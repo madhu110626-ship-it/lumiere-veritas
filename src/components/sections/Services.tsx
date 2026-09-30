@@ -2,130 +2,136 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { services } from "@/data/services";
+import { capabilities } from "@/data/services";
 import { Reveal } from "@/components/ui/Reveal";
-import Link from "next/link";
 
-export function Services({ limit }: { limit?: number }) {
+export function Services() {
   const [active, setActive] = useState(0);
-  const list = limit ? services.slice(0, limit) : services;
-  const current = list[active] ?? list[0];
 
   return (
-    <section id="services" className="bg-ink text-cream py-24 md:py-32">
+    <section id="services" className="bg-bg py-24 md:py-32">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10 lg:px-14">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-20">
           <div>
             <Reveal>
-              <p className="text-xs md:text-sm tracking-[0.28em] uppercase text-lime mb-4">
+              <p className="mb-4 text-xs tracking-[0.28em] uppercase text-gold">
                 Capabilities
               </p>
             </Reveal>
             <Reveal delay={0.08}>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight">
-                WHAT WE DO
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[0.95] text-text">
+                16 CREATIVE &amp;
+                <br />
+                MARKETING
+                <br />
+                <span className="text-gold">CAPABILITIES</span>
               </h2>
             </Reveal>
           </div>
-          <Reveal delay={0.15}>
-            <Link
-              href="/services"
-              className="text-sm text-cream/60 hover:text-lime transition-colors link-underline"
-            >
-              View all services →
-            </Link>
+          <Reveal delay={0.12}>
+            <p className="max-w-sm text-muted text-sm md:text-base leading-relaxed">
+              Ten editorial pillars — spanning media, marketing, advertising,
+              and creative production.
+            </p>
           </Reveal>
         </div>
 
-        {/* Desktop: signature hover interaction */}
-        <div className="hidden lg:grid lg:grid-cols-12 gap-8 min-h-[70vh]">
-          <div className="lg:col-span-7 flex flex-col border-t border-cream/15">
-            {list.map((service, i) => (
+        {/* Desktop editorial grid */}
+        <div className="hidden lg:grid grid-cols-12 gap-0 border-t border-text/10">
+          <div className="col-span-5 border-r border-text/10">
+            {capabilities.map((cap, i) => (
               <button
-                key={service.id}
+                key={cap.id}
                 type="button"
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
-                className={`service-row group flex items-center gap-6 border-b border-cream/15 px-4 py-5 text-left transition-all duration-350 ${
-                  active === i ? "bg-lime text-ink" : "text-cream"
+                className={`group relative w-full text-left px-6 py-6 border-b border-text/10 transition-colors duration-400 ${
+                  active === i ? "bg-bg-secondary" : "hover:bg-bg-secondary/50"
                 }`}
               >
                 <span
-                  className={`font-display text-sm tracking-widest shrink-0 ${
-                    active === i ? "text-ink/50" : "text-cream/40"
+                  className={`absolute left-0 top-0 bottom-0 w-[2px] bg-gold transition-transform duration-500 origin-top ${
+                    active === i ? "scale-y-100" : "scale-y-0"
+                  }`}
+                />
+                <div className="flex items-baseline gap-5">
+                  <span className="text-xs tracking-[0.2em] text-gold/70 font-medium">
+                    {cap.number}
+                  </span>
+                  <span
+                    className={`font-display text-2xl xl:text-3xl font-medium tracking-tight transition-colors ${
+                      active === i ? "text-gold" : "text-text"
+                    }`}
+                  >
+                    {cap.title}
+                  </span>
+                </div>
+                <p
+                  className={`mt-2 pl-12 text-sm leading-relaxed transition-opacity duration-300 ${
+                    active === i ? "opacity-100 text-muted" : "opacity-0"
                   }`}
                 >
-                  {service.number}
-                </span>
-                <span className="font-display text-xl xl:text-2xl font-medium tracking-tight leading-tight">
-                  {service.title}
-                </span>
+                  {cap.description}
+                </p>
               </button>
             ))}
           </div>
-
-          <div className="lg:col-span-5 relative sticky top-28 h-[min(70vh,640px)] rounded-2xl overflow-hidden bg-ink-muted">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.id}
-                initial={{ opacity: 0, scale: 1.06 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0"
+          <div className="col-span-7 relative min-h-[560px]">
+            {capabilities.map((cap, i) => (
+              <div
+                key={cap.id}
+                className={`absolute inset-0 transition-opacity duration-700 ${
+                  active === i ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
               >
                 <Image
-                  src={current.image}
-                  alt={current.title}
+                  src={cap.image}
+                  alt={cap.title}
                   fill
-                  sizes="40vw"
-                  className="object-cover"
+                  sizes="55vw"
+                  className={`object-cover transition-transform duration-1000 ${
+                    active === i ? "scale-105" : "scale-100"
+                  }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <p className="text-lime text-xs tracking-[0.25em] uppercase mb-2">
-                    {current.number}
+                <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-10">
+                  <p className="text-xs tracking-[0.28em] uppercase text-gold mb-2">
+                    {cap.number}
                   </p>
-                  <p className="font-display text-2xl font-medium leading-snug mb-3">
-                    {current.title}
-                  </p>
-                  <p className="text-cream/70 text-sm leading-relaxed max-w-sm">
-                    {current.description}
-                  </p>
+                  <p className="font-display text-3xl text-text">{cap.title}</p>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Mobile / tablet: stacked list */}
-        <div className="lg:hidden space-y-0 border-t border-cream/15">
-          {list.map((service) => (
+        {/* Mobile / tablet list */}
+        <div className="lg:hidden space-y-0 border-t border-text/10">
+          {capabilities.map((cap) => (
             <div
-              key={service.id}
-              className="border-b border-cream/15 py-6"
+              key={cap.id}
+              className="group border-b border-text/10 py-8"
             >
-              <div className="flex gap-4 mb-4">
-                <span className="text-lime text-sm font-display tracking-widest">
-                  {service.number}
+              <div className="flex items-baseline gap-4 mb-4">
+                <span className="text-xs tracking-[0.2em] text-gold">
+                  {cap.number}
                 </span>
-                <h3 className="font-display text-xl sm:text-2xl font-medium leading-snug">
-                  {service.title}
+                <h3 className="font-display text-2xl sm:text-3xl font-medium text-text">
+                  {cap.title}
                 </h3>
               </div>
-              <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4">
+              <p className="text-sm text-muted leading-relaxed mb-5 pl-10">
+                {cap.description}
+              </p>
+              <div className="relative aspect-[16/10] overflow-hidden rounded-sm ml-0 sm:ml-10">
                 <Image
-                  src={service.image}
-                  alt={service.title}
+                  src={cap.image}
+                  alt={cap.title}
                   fill
                   sizes="100vw"
                   className="object-cover"
                 />
               </div>
-              <p className="text-cream/60 text-sm leading-relaxed pl-10">
-                {service.description}
-              </p>
             </div>
           ))}
         </div>

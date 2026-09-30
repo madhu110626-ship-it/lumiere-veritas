@@ -1,52 +1,70 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { contactInfo } from "@/data/navigation";
+import { contactInfo, serviceOptions } from "@/data/navigation";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "");
+    const company = String(data.get("company") || "");
+    const email = String(data.get("email") || "");
+    const phone = String(data.get("phone") || "");
+    const service = String(data.get("service") || "");
+    const details = String(data.get("details") || "");
+
+    const body = [
+      `Name: ${name}`,
+      `Company: ${company}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      `Service Required: ${service}`,
+      "",
+      "Project Details:",
+      details,
+    ].join("\n");
+
+    const mailto = `${contactInfo.emailHref}?subject=${encodeURIComponent(
+      `Project enquiry — ${name || "New lead"}`
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
     setSubmitted(true);
-  };
+  }
 
   return (
-    <section id="contact" className="bg-cream text-ink py-24 md:py-32">
+    <section id="contact" className="bg-bg-secondary py-24 md:py-32 border-t border-text/5">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10 lg:px-14">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20">
+          <div className="lg:col-span-5">
             <Reveal>
-              <p className="text-xs md:text-sm tracking-[0.28em] uppercase text-ink/50 mb-4">
+              <p className="mb-4 text-xs tracking-[0.28em] uppercase text-gold">
                 Contact
               </p>
             </Reveal>
             <Reveal delay={0.08}>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[0.95]">
-                HAVE A BRAND
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-[0.95] text-text">
+                HAVE AN IDEA?
                 <br />
-                TO BUILD?
+                <span className="text-gold">LET&apos;S MAKE IT VISIBLE.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.16}>
-              <p className="mt-8 text-base md:text-lg text-ink/60 leading-relaxed max-w-md">
-                Tell us about your project. We&apos;ll respond with next steps —
-                or message us directly on WhatsApp for a faster start.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.24}>
-              <div className="mt-10 space-y-4 text-sm md:text-base">
+              <div className="mt-10 space-y-4 text-sm">
                 <a
                   href={contactInfo.emailHref}
-                  className="block hover:text-ink/60 transition-colors break-all"
+                  className="block text-text/80 hover:text-gold transition-colors break-all"
                 >
                   {contactInfo.email}
                 </a>
                 <a
                   href={contactInfo.phoneHref}
-                  className="block hover:text-ink/60 transition-colors"
+                  className="block text-text/80 hover:text-gold transition-colors"
                 >
                   {contactInfo.phone}
                 </a>
@@ -54,104 +72,100 @@ export function Contact() {
                   href={contactInfo.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex mt-4 rounded-full bg-lime text-ink px-7 py-3.5 font-medium hover:bg-ink hover:text-cream transition-colors"
+                  className="inline-flex items-center gap-2 text-gold hover:text-highlight transition-colors"
                 >
-                  Chat on WhatsApp →
+                  WhatsApp →
                 </a>
               </div>
             </Reveal>
           </div>
 
-          <Reveal delay={0.15}>
-            <form
-              onSubmit={onSubmit}
-              className="rounded-2xl border border-ink/10 bg-cream p-6 md:p-10 space-y-5"
-            >
-              {submitted ? (
-                <div className="py-16 text-center">
-                  <p className="font-display text-2xl md:text-3xl font-medium mb-3">
-                    Message received.
-                  </p>
-                  <p className="text-ink/55 text-sm">
-                    PLACEHOLDER confirmation — wire this form to your backend or
-                    email service when ready. For now, reach us via email or
-                    WhatsApp.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setSubmitted(false)}
-                    className="mt-8 text-sm underline underline-offset-4"
-                  >
-                    Send another
-                  </button>
+          <div className="lg:col-span-7">
+            <Reveal delay={0.1}>
+              <form onSubmit={onSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <Field label="Name" name="name" required />
+                  <Field label="Company" name="company" />
                 </div>
-              ) : (
-                <>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <label className="block">
-                      <span className="text-xs tracking-widest uppercase text-ink/45">
-                        Name
-                      </span>
-                      <input
-                        required
-                        name="name"
-                        type="text"
-                        className="mt-2 w-full border-b border-ink/20 bg-transparent py-3 text-base outline-none focus:border-ink transition-colors"
-                        placeholder="Your name"
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="text-xs tracking-widest uppercase text-ink/45">
-                        Email
-                      </span>
-                      <input
-                        required
-                        name="email"
-                        type="email"
-                        className="mt-2 w-full border-b border-ink/20 bg-transparent py-3 text-base outline-none focus:border-ink transition-colors"
-                        placeholder="you@brand.com"
-                      />
-                    </label>
-                  </div>
-                  <label className="block">
-                    <span className="text-xs tracking-widest uppercase text-ink/45">
-                      Company
-                    </span>
-                    <input
-                      name="company"
-                      type="text"
-                      className="mt-2 w-full border-b border-ink/20 bg-transparent py-3 text-base outline-none focus:border-ink transition-colors"
-                      placeholder="Brand / company"
-                    />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <Field label="Email" name="email" type="email" required />
+                  <Field label="Phone" name="phone" type="tel" />
+                </div>
+                <div>
+                  <label className="block text-xs tracking-[0.2em] uppercase text-muted mb-2">
+                    Service Required
                   </label>
-                  <label className="block">
-                    <span className="text-xs tracking-widest uppercase text-ink/45">
-                      Project
-                    </span>
-                    <textarea
-                      required
-                      name="message"
-                      rows={4}
-                      className="mt-2 w-full border-b border-ink/20 bg-transparent py-3 text-base outline-none focus:border-ink transition-colors resize-none"
-                      placeholder="What are you looking to build?"
-                    />
+                  <select
+                    name="service"
+                    className="w-full bg-bg border border-text/15 px-4 py-3.5 text-text text-sm focus:border-gold outline-none transition-colors appearance-none"
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Select a capability
+                    </option>
+                    {serviceOptions.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs tracking-[0.2em] uppercase text-muted mb-2">
+                    Project Details
                   </label>
+                  <textarea
+                    name="details"
+                    rows={5}
+                    className="w-full bg-bg border border-text/15 px-4 py-3.5 text-text text-sm focus:border-gold outline-none transition-colors resize-y min-h-[140px]"
+                    placeholder="Tell us what you're building…"
+                  />
+                </div>
+                <div className="flex flex-wrap items-center gap-4 pt-2">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto rounded-full bg-ink text-cream px-10 py-4 text-sm font-medium hover:bg-lime hover:text-ink transition-colors"
+                    className="rounded-full bg-gold px-8 py-3.5 text-sm font-medium tracking-wide text-bg hover:bg-highlight transition-colors"
                   >
-                    SEND MESSAGE
+                    Send Enquiry →
                   </button>
-                  <p className="text-[11px] text-ink/40">
-                    Form is front-end only (PLACEHOLDER). Prefer email or WhatsApp
-                    for direct contact.
-                  </p>
-                </>
-              )}
-            </form>
-          </Reveal>
+                  {submitted && (
+                    <p className="text-xs text-muted">
+                      Opening your email client…
+                    </p>
+                  )}
+                </div>
+              </form>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function Field({
+  label,
+  name,
+  type = "text",
+  required = false,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+}) {
+  return (
+    <div>
+      <label className="block text-xs tracking-[0.2em] uppercase text-muted mb-2">
+        {label}
+        {required && <span className="text-gold ml-1">*</span>}
+      </label>
+      <input
+        type={type}
+        name={name}
+        required={required}
+        className="w-full bg-bg border border-text/15 px-4 py-3.5 text-text text-sm focus:border-gold outline-none transition-colors"
+      />
+    </div>
   );
 }

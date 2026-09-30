@@ -2,7 +2,7 @@ export const navLinks = [
   { href: "/work", label: "Work", hash: "#work" },
   { href: "/services", label: "Services", hash: "#services" },
   { href: "/about", label: "About", hash: "#about" },
-  { href: "/insights", label: "Insights", hash: "#insights" },
+  { href: "/#approach", label: "Approach", hash: "#approach" },
   { href: "/contact", label: "Contact", hash: "#contact" },
 ] as const;
 
@@ -19,4 +19,18 @@ export const socialLinks = [
   { label: "LinkedIn", href: "#" },
   { label: "YouTube", href: "#" },
   { label: "X", href: "#" },
+] as const;
+
+export const serviceOptions = [
+  "Media & PR",
+  "Digital & Social",
+  "Advertising",
+  "Video Production",
+  "AI & Motion",
+  "Branding",
+  "Events",
+  "Outdoor & Print",
+  "Lead Generation",
+  "Spaces & Interiors",
+  "Other / Multi-capability",
 ] as const;

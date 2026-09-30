@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -23,21 +24,25 @@ export const metadata: Metadata = {
     template: "%s · Lumiere Veritas",
   },
   description:
-    "Creative media solutions — strategy, creativity, media & execution. We make brands impossible to ignore.",
+    "360° media, marketing, advertising & creative. Strategy, creativity, media and execution — one partner to make your brand matter.",
   keywords: [
     "creative agency",
     "media solutions",
     "brand campaigns",
     "video production",
     "PR",
-    "outdoor advertising",
+    "advertising",
     "Mumbai",
   ],
   openGraph: {
     title: "Lumiere Veritas Media Solutions",
     description:
-      "We make brands impossible to ignore. Creative media, production & brand experiences.",
+      "We create visibility. We build impact. 360° media · marketing · advertising · creative.",
     type: "website",
+    images: [{ url: "/brand/logo.png" }],
+  },
+  icons: {
+    icon: "/brand/logo.png",
   },
 };
 
@@ -47,8 +52,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <body className="font-body antialiased bg-ink text-cream">
+    <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
+      <body className="font-body antialiased bg-bg text-text">
         <Header />
         <main>{children}</main>
         <Footer />

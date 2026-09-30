@@ -1,34 +1,39 @@
+import Image from "next/image";
 import Link from "next/link";
 import { contactInfo, navLinks, socialLinks } from "@/data/navigation";
 
 export function Footer() {
   return (
-    <footer className="bg-ink border-t border-cream/10 text-cream">
+    <footer className="bg-bg border-t border-text/10 text-text">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10 lg:px-14 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="lg:col-span-1">
-            <Link
-              href="/"
-              className="font-display text-2xl font-semibold tracking-tight"
-            >
-              LUMIERE<span className="text-lime">.</span>VERITAS
+            <Link href="/" className="inline-block">
+              <Image
+                src="/brand/logo.png"
+                alt="Lumiere Veritas Media Solutions"
+                width={220}
+                height={147}
+                className="h-16 w-auto object-contain"
+              />
             </Link>
-            <p className="mt-4 text-cream/60 text-sm leading-relaxed max-w-xs">
-              Creative media solutions. Strategy, creativity, media &amp;
-              execution — one partner for brands that refuse to be ignored.
+            <p className="mt-6 text-xs tracking-[0.22em] uppercase text-gold leading-relaxed">
+              Strategy. Creativity.
+              <br />
+              Media. Execution.
             </p>
           </div>
 
           <div>
-            <p className="text-xs tracking-[0.25em] uppercase text-lime mb-5">
+            <p className="text-xs tracking-[0.25em] uppercase text-gold mb-5">
               Navigate
             </p>
             <ul className="space-y-3">
               {navLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-cream/75 hover:text-lime transition-colors text-sm"
+                    className="text-text/75 hover:text-gold transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -38,14 +43,14 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs tracking-[0.25em] uppercase text-lime mb-5">
+            <p className="text-xs tracking-[0.25em] uppercase text-gold mb-5">
               Contact
             </p>
-            <ul className="space-y-3 text-sm text-cream/75">
+            <ul className="space-y-3 text-sm text-text/75">
               <li>
                 <a
                   href={contactInfo.emailHref}
-                  className="hover:text-lime transition-colors break-all"
+                  className="hover:text-gold transition-colors break-all"
                 >
                   {contactInfo.email}
                 </a>
@@ -53,7 +58,7 @@ export function Footer() {
               <li>
                 <a
                   href={contactInfo.phoneHref}
-                  className="hover:text-lime transition-colors"
+                  className="hover:text-gold transition-colors"
                 >
                   {contactInfo.phone}
                 </a>
@@ -63,7 +68,7 @@ export function Footer() {
                   href={contactInfo.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-lime transition-colors"
+                  className="hover:text-gold transition-colors"
                 >
                   WhatsApp
                 </a>
@@ -72,7 +77,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs tracking-[0.25em] uppercase text-lime mb-5">
+            <p className="text-xs tracking-[0.25em] uppercase text-gold mb-5">
               Social
             </p>
             <ul className="space-y-3">
@@ -80,12 +85,10 @@ export function Footer() {
                 <li key={s.label}>
                   <a
                     href={s.href}
-                    className="text-sm text-cream/75 hover:text-lime transition-colors"
+                    className="text-sm text-text/75 hover:text-gold transition-colors"
                   >
                     {s.label}
-                    <span className="text-cream/30 text-xs ml-2">
-                      (PLACEHOLDER)
-                    </span>
+                    <span className="text-muted text-xs ml-2">#</span>
                   </a>
                 </li>
               ))}
@@ -93,9 +96,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-cream/45">
+        <div className="mt-16 pt-8 border-t border-text/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-muted">
           <p>© 2026 Lumiere Veritas Media Solutions. All rights reserved.</p>
-          <p>Mumbai · India</p>
+          <p>STRATEGY · CREATIVITY · MEDIA · EXECUTION</p>
         </div>
       </div>
     </footer>

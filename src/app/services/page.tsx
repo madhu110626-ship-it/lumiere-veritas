@@ -2,21 +2,22 @@ import type { Metadata } from "next";
 import { Services } from "@/components/sections/Services";
 import { Approach } from "@/components/sections/Approach";
 import { Contact } from "@/components/sections/Contact";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
+import { services } from "@/data/services";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "16 creative capabilities — PR, social, campaigns, video, AI, outdoor, events, branding & more.",
+    "16 creative & marketing capabilities — PR, social, campaigns, video, AI, outdoor, events, branding & more.",
 };
 
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-ink text-cream pt-32 md:pt-40 pb-16 md:pb-20">
+      <section className="bg-bg text-text pt-32 md:pt-40 pb-16 md:pb-20">
         <div className="mx-auto max-w-[1600px] px-5 md:px-10 lg:px-14">
           <Reveal>
-            <p className="text-xs tracking-[0.28em] uppercase text-lime mb-4">
+            <p className="text-xs tracking-[0.28em] uppercase text-gold mb-4">
               Capabilities
             </p>
           </Reveal>
@@ -24,17 +25,43 @@ export default function ServicesPage() {
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[0.9]">
               WHAT
               <br />
-              WE DO
+              <span className="text-gold">WE DO.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="mt-6 max-w-xl text-cream/55">
-              Sixteen capabilities under one partner — hover a service to explore
-              on desktop.
+            <p className="mt-6 max-w-xl text-muted">
+              Sixteen creative &amp; marketing capabilities under one partner —
+              360° media · marketing · advertising · creative.
             </p>
           </Reveal>
         </div>
       </section>
+
+      <section className="bg-bg-secondary border-y border-text/5 py-20 md:py-28">
+        <div className="mx-auto max-w-[1600px] px-5 md:px-10 lg:px-14">
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
+            {services.map((s) => (
+              <StaggerItem key={s.number}>
+                <div className="border-t border-text/10 py-8 group">
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-xs tracking-[0.2em] text-gold">
+                      {s.number}
+                    </span>
+                    <h2 className="font-display text-xl md:text-2xl font-medium text-text group-hover:text-gold transition-colors">
+                      {s.title}
+                    </h2>
+                  </div>
+                  <p className="mt-3 pl-12 text-sm text-muted leading-relaxed">
+                    {s.description}
+                  </p>
+                  <div className="mt-4 ml-12 h-px w-0 bg-gold transition-all duration-500 group-hover:w-24" />
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
       <Services />
       <Approach />
       <Contact />

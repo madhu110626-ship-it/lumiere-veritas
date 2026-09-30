@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -37,33 +38,37 @@ export function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled || open
-            ? "bg-ink/95 backdrop-blur-md border-b border-cream/10"
+            ? "bg-bg/95 backdrop-blur-md border-b border-text/10"
             : "bg-transparent"
         }`}
       >
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 md:px-10 lg:px-14 py-4 md:py-5">
-          <Link
-            href="/"
-            className="font-display text-lg md:text-xl font-semibold tracking-tight text-cream hover:text-lime transition-colors"
-          >
-            LUMIERE<span className="text-lime">.</span>VERITAS
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 md:px-10 lg:px-14 py-3 md:py-4">
+          <Link href="/" className="relative z-50 flex items-center shrink-0">
+            <Image
+              src="/brand/logo.png"
+              alt="Lumiere Veritas Media Solutions"
+              width={200}
+              height={133}
+              className="h-10 md:h-12 w-auto object-contain"
+              priority
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
+                key={link.label}
                 href={linkHref(link.hash, link.href)}
-                className="text-sm tracking-wide text-cream/80 hover:text-lime transition-colors link-underline"
+                className="text-xs tracking-[0.18em] uppercase text-text/75 hover:text-gold transition-colors link-underline"
               >
                 {link.label}
               </Link>
             ))}
             <Link
               href={isHome ? "#contact" : "/contact"}
-              className="ml-2 rounded-full bg-lime px-5 py-2.5 text-sm font-medium text-ink hover:bg-cream transition-colors"
+              className="ml-2 rounded-full border border-gold/60 px-5 py-2.5 text-xs tracking-[0.18em] uppercase text-gold hover:bg-gold hover:text-bg transition-colors"
             >
-              Start a Project
+              Let&apos;s Talk →
             </Link>
           </nav>
 
@@ -77,17 +82,17 @@ export function Header() {
             <span className="sr-only">Menu</span>
             <div className="flex w-6 flex-col gap-1.5">
               <span
-                className={`block h-[1.5px] w-full bg-cream transition-all duration-300 ${
+                className={`block h-[1.5px] w-full bg-text transition-all duration-300 ${
                   open ? "translate-y-[6px] rotate-45" : ""
                 }`}
               />
               <span
-                className={`block h-[1.5px] w-full bg-cream transition-all duration-300 ${
+                className={`block h-[1.5px] w-full bg-text transition-all duration-300 ${
                   open ? "opacity-0" : ""
                 }`}
               />
               <span
-                className={`block h-[1.5px] w-full bg-cream transition-all duration-300 ${
+                className={`block h-[1.5px] w-full bg-text transition-all duration-300 ${
                   open ? "-translate-y-[6px] -rotate-45" : ""
                 }`}
               />
@@ -103,12 +108,12 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-40 bg-ink flex flex-col justify-between px-6 py-28 lg:hidden"
+            className="fixed inset-0 z-40 bg-bg flex flex-col justify-between px-6 py-28 lg:hidden"
           >
-            <nav className="flex flex-col gap-2">
+            <nav className="flex flex-col gap-3">
               {navLinks.map((link, i) => (
                 <motion.div
-                  key={link.href}
+                  key={link.label}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 * i, duration: 0.45 }}
@@ -116,7 +121,7 @@ export function Header() {
                   <Link
                     href={linkHref(link.hash, link.href)}
                     onClick={() => setOpen(false)}
-                    className="font-display text-4xl sm:text-5xl font-medium text-cream hover:text-lime transition-colors"
+                    className="font-display text-4xl sm:text-5xl font-medium text-text hover:text-gold transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -127,26 +132,26 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="space-y-3 text-cream/70 text-sm"
+              className="space-y-3 text-muted text-sm"
             >
               <a
                 href={contactInfo.emailHref}
-                className="block hover:text-lime transition-colors"
+                className="block hover:text-gold transition-colors break-all"
               >
                 {contactInfo.email}
               </a>
               <a
                 href={contactInfo.phoneHref}
-                className="block hover:text-lime transition-colors"
+                className="block hover:text-gold transition-colors"
               >
                 {contactInfo.phone}
               </a>
               <Link
                 href={isHome ? "#contact" : "/contact"}
                 onClick={() => setOpen(false)}
-                className="inline-flex mt-4 rounded-full bg-lime px-6 py-3 text-ink font-medium"
+                className="inline-flex mt-4 rounded-full bg-gold px-6 py-3 text-bg font-medium tracking-wide"
               >
-                Start a Project
+                Let&apos;s Talk →
               </Link>
             </motion.div>
           </motion.div>

@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-lime: #C8FF00;
-  --color-ink: #080808;
-  --color-cream: #F5F3EE;
-  --color-ink-muted: #1a1a1a;
-  --color-cream-muted: #e8e6e0;
-  --font-display: var(--font-space-grotesk);
-  --font-body: var(--font-inter);
+  --color-bg: #050505;
+  --color-bg-secondary: #111111;
+  --color-text: #F4F0E8;
+  --color-muted: #8D8981;
+  --color-gold: #C9A45C;
+  --color-highlight: #E4C27A;
+  --color-ink: #050505;
+  --color-cream: #F4F0E8;
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
 html {
@@ -15,8 +18,8 @@ html {
 }
 
 body {
-  background: var(--color-ink);
-  color: var(--color-cream);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -24,34 +27,33 @@ body {
 }
 
 ::selection {
-  background: #C8FF00;
-  color: #080808;
+  background: #C9A45C;
+  color: #050505;
 }
 
 .font-display {
-  font-family: var(--font-display), system-ui, sans-serif;
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
 }
 
 .font-body {
   font-family: var(--font-body), system-ui, sans-serif;
 }
 
-/* Ken Burns */
 @keyframes kenburns {
   0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.12) translate(-1.5%, -1%); }
+  50% { transform: scale(1.1) translate(-1.2%, -0.8%); }
   100% { transform: scale(1) translate(0, 0); }
 }
 
 .ken-burns {
-  animation: kenburns 22s ease-in-out infinite;
+  animation: kenburns 24s ease-in-out infinite;
   will-change: transform;
 }
 
 @keyframes kenburns-alt {
-  0% { transform: scale(1.08) translate(-1%, 1%); }
-  50% { transform: scale(1) translate(1%, -0.5%); }
-  100% { transform: scale(1.08) translate(-1%, 1%); }
+  0% { transform: scale(1.06) translate(-0.8%, 0.6%); }
+  50% { transform: scale(1) translate(0.6%, -0.4%); }
+  100% { transform: scale(1.06) translate(-0.8%, 0.6%); }
 }
 
 .ken-burns-alt {
@@ -59,58 +61,11 @@ body {
   will-change: transform;
 }
 
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+@keyframes gold-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
-.float-slow {
-  animation: float-slow 6s ease-in-out infinite;
-}
-
-/* Horizontal scroll gallery */
-.branding-track {
-  display: flex;
-  gap: 1.5rem;
-  width: max-content;
-  animation: scroll-x 40s linear infinite;
-}
-
-.branding-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scroll-x {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #080808;
-}
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #C8FF00;
-}
-
-/* Service hover panel */
-.service-row {
-  transition: background 0.35s ease, color 0.35s ease;
-}
-.service-row:hover {
-  background: #C8FF00;
-  color: #080808;
-}
-
-/* Link underline */
 .link-underline {
   position: relative;
   display: inline-block;
@@ -132,24 +87,36 @@ body {
   transform-origin: left;
 }
 
-/* Noise overlay subtle */
 .noise::before {
   content: "";
   pointer-events: none;
   position: absolute;
   inset: 0;
-  opacity: 0.035;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   z-index: 1;
 }
 
-/* Focus styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A45C;
+}
+
 :focus-visible {
-  outline: 2px solid #C8FF00;
+  outline: 2px solid #C9A45C;
   outline-offset: 3px;
 }
 
-/* Hide scrollbar for horizontal galleries on mobile */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

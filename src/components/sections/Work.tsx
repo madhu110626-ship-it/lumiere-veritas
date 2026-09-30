@@ -2,63 +2,73 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { projects, projectFilters } from "@/data/projects";
-import { Reveal } from "@/components/ui/Reveal";
+import { useMemo, useState } from "react";
+import { concepts, conceptFilters } from "@/data/projects";
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 
-export function Work({ showAllLink = true }: { showAllLink?: boolean }) {
-  const [filter, setFilter] = useState<string>("All");
+type WorkProps = {
+  showAllLink?: boolean;
+  limit?: number;
+};
 
-  const filtered =
-    filter === "All"
-      ? projects
-      : projects.filter((p) => p.category === filter);
+export function Work({ showAllLink = true, limit }: WorkProps) {
+  const [filter, setFilter] = useState<(typeof conceptFilters)[number]>("All");
+
+  const items = useMemo(() => {
+    const filtered =
+      filter === "All"
+        ? concepts
+        : concepts.filter((c) => c.category === filter);
+    return typeof limit === "number" ? filtered.slice(0, limit) : filtered;
+  }, [filter, limit]);
 
   return (
-    <section id="work" className="bg-cream text-ink py-24 md:py-32">
+    <section id="work" className="bg-bg py-24 md:py-32">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10 lg:px-14">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
           <div>
             <Reveal>
-              <p className="text-xs md:text-sm tracking-[0.28em] uppercase text-ink/50 mb-4">
-                Portfolio
+              <p className="mb-4 text-xs tracking-[0.28em] uppercase text-gold">
+                Creative Possibilities
               </p>
             </Reveal>
             <Reveal delay={0.08}>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight">
-                SELECTED WORK
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[0.95] text-text">
+                CONCEPTS
+                <br />
+                <span className="text-gold">IN WAITING.</span>
               </h2>
             </Reveal>
-            <Reveal delay={0.12}>
-              <p className="mt-4 text-sm text-ink/50">
-                Placeholder projects — replace with real case studies.
+            <Reveal delay={0.14}>
+              <p className="mt-5 max-w-md text-muted text-sm md:text-base leading-relaxed">
+                Placeholder directions — easy to replace with real work as it
+                lands. No invented clients or results.
               </p>
             </Reveal>
           </div>
           {showAllLink && (
-            <Reveal delay={0.15}>
+            <Reveal delay={0.1}>
               <Link
                 href="/work"
-                className="text-sm text-ink/60 hover:text-ink transition-colors link-underline"
+                className="text-sm tracking-[0.18em] uppercase text-gold hover:text-highlight transition-colors link-underline"
               >
-                View all work →
+                View all →
               </Link>
             </Reveal>
           )}
         </div>
 
-        <Reveal delay={0.1}>
-          <div className="flex flex-wrap gap-2 mb-10">
-            {projectFilters.map((f) => (
+        <Reveal>
+          <div className="flex flex-wrap gap-2 mb-10 md:mb-12">
+            {conceptFilters.map((f) => (
               <button
                 key={f}
                 type="button"
                 onClick={() => setFilter(f)}
-                className={`rounded-full px-4 py-2 text-xs md:text-sm tracking-wide transition-colors ${
+                className={`px-4 py-2 text-xs tracking-[0.16em] uppercase rounded-full border transition-colors ${
                   filter === f
-                    ? "bg-ink text-cream"
-                    : "bg-transparent border border-ink/15 text-ink/60 hover:border-ink/40"
+                    ? "border-gold bg-gold text-bg"
+                    : "border-text/20 text-muted hover:border-gold/50 hover:text-gold"
                 }`}
               >
                 {f}
@@ -67,43 +77,36 @@ export function Work({ showAllLink = true }: { showAllLink?: boolean }) {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((project, i) => (
-              <motion.article
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className={`group relative overflow-hidden rounded-2xl bg-ink ${
-                  i % 3 === 0 ? "md:row-span-1 aspect-[4/5]" : "aspect-[4/3]"
-                }`}
-              >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-60"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
-                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                  <div className="flex items-center gap-3 mb-3 text-xs tracking-widest uppercase text-lime">
-                    <span>{project.category}</span>
-                    <span className="text-cream/40">·</span>
-                    <span className="text-cream/50">{project.year}</span>
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          {items.map((item) => (
+            <StaggerItem key={item.id}>
+              <article className="group relative overflow-hidden bg-bg-secondary">
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width:768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent opacity-80" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <p className="text-[10px] tracking-[0.28em] uppercase text-gold mb-2">
+                      {item.category}
+                    </p>
+                    <h3 className="font-display text-2xl md:text-3xl font-medium text-text">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+                      {item.description}
+                    </p>
                   </div>
-                  <h3 className="font-display text-2xl md:text-3xl font-medium text-cream leading-tight">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-cream/55">{project.client}</p>
+                  <div className="absolute top-0 left-0 h-[2px] w-0 bg-gold transition-all duration-500 group-hover:w-full" />
                 </div>
-              </motion.article>
-            ))}
-          </AnimatePresence>
-        </div>
+              </article>
+            </StaggerItem>
+          ))}
+        </Stagger>
       </div>
     </section>
   );

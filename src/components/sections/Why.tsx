@@ -1,58 +1,68 @@
-"use client";
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 
-import { Reveal } from "@/components/ui/Reveal";
-
-const reasons = [
+const points = [
   {
-    title: "One roof. Full spectrum.",
-    body: "Strategy, creative, media, production, and experiences — without juggling agencies.",
+    title: "One partner, full stack",
+    description:
+      "Strategy, creativity, media, and execution without the handoff gaps between specialists.",
   },
   {
-    title: "Craft meets commercial.",
-    body: "Beautiful work that still sells. Art direction with a clear business intent.",
+    title: "Editorial craft",
+    description:
+      "We treat brand work like publishing — clear voice, intentional visuals, disciplined storytelling.",
   },
   {
-    title: "Human + AI by design.",
-    body: "We use acceleration tools to move faster — without outsourcing judgment.",
+    title: "Media fluency",
+    description:
+      "From PR and social to outdoor and film — we think in channels that people actually notice.",
   },
   {
-    title: "Built for presence.",
-    body: "From OOH to earned media to social — we make brands visible where it matters.",
+    title: "Production-ready",
+    description:
+      "Ideas that survive the room and thrive on set, on press, and in the feed.",
   },
-];
+  {
+    title: "Human + intelligent tools",
+    description:
+      "AI accelerates production. Taste, judgment, and creative direction stay human.",
+  },
+] as const;
 
 export function Why() {
   return (
-    <section className="bg-cream text-ink py-24 md:py-36">
+    <section id="why" className="bg-bg-secondary py-24 md:py-32 border-y border-text/5">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10 lg:px-14">
         <Reveal>
-          <p className="text-xs md:text-sm tracking-[0.28em] uppercase text-ink/50 mb-4">
-            Differentiator
+          <p className="mb-4 text-xs tracking-[0.28em] uppercase text-gold">
+            Why Us
           </p>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-16 md:mb-24">
-            WHY WORK WITH US?
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[0.95] text-text mb-14 md:mb-20">
+            WHY LUMIERE
+            <br />
+            <span className="text-gold">VERITAS?</span>
           </h2>
         </Reveal>
 
-        <div className="space-y-0 border-t border-ink/15">
-          {reasons.map((r, i) => (
-            <Reveal key={r.title} delay={0.05 * i}>
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 border-b border-ink/15 py-10 md:py-14 group">
-                <p className="md:col-span-1 font-display text-sm text-ink/30 pt-2">
-                  0{i + 1}
-                </p>
-                <h3 className="md:col-span-5 font-display text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight group-hover:text-ink/70 transition-colors">
-                  {r.title}
-                </h3>
-                <p className="md:col-span-6 text-base md:text-lg text-ink/55 leading-relaxed self-center">
-                  {r.body}
-                </p>
-              </div>
-            </Reveal>
+        <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-text/10">
+          {points.map((point, i) => (
+            <StaggerItem
+              key={point.title}
+              className={`bg-bg-secondary p-8 md:p-10 ${
+                i === points.length - 1 ? "lg:col-span-1 md:col-span-2 lg:col-auto" : ""
+              }`}
+            >
+              <span className="block h-px w-10 bg-gold mb-6" />
+              <h3 className="font-display text-xl md:text-2xl font-medium text-text mb-3">
+                {point.title}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed">
+                {point.description}
+              </p>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

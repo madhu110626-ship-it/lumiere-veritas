@@ -13,7 +13,7 @@ export function SectionHeading({
   eyebrow,
   title,
   description,
-  light = false,
+  light = true,
   align = "left",
   className = "",
 }: SectionHeadingProps) {
@@ -23,11 +23,7 @@ export function SectionHeading({
     >
       {eyebrow && (
         <Reveal>
-          <p
-            className={`mb-4 text-xs md:text-sm tracking-[0.28em] uppercase font-medium ${
-              light ? "text-lime" : "text-lime"
-            }`}
-          >
+          <p className="mb-4 text-xs md:text-sm tracking-[0.28em] uppercase font-medium text-gold">
             {eyebrow}
           </p>
         </Reveal>
@@ -35,7 +31,7 @@ export function SectionHeading({
       <Reveal delay={0.08}>
         <h2
           className={`font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium leading-[0.95] tracking-tight ${
-            light ? "text-cream" : "text-ink"
+            light ? "text-text" : "text-bg"
           }`}
         >
           {title}
@@ -45,7 +41,7 @@ export function SectionHeading({
         <Reveal delay={0.16}>
           <p
             className={`mt-6 text-base md:text-lg leading-relaxed max-w-2xl ${
-              light ? "text-cream/70" : "text-ink/60"
+              light ? "text-muted" : "text-bg/60"
             } ${align === "center" ? "mx-auto" : ""}`}
           >
             {description}

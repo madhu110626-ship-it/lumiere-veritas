@@ -4,112 +4,90 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const slides = [
+const montage = [
   {
-    src: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1800&q=80",
+    src: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1600&q=80",
     alt: "Cinematic production lighting",
   },
   {
-    src: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1800&q=80",
-    alt: "Creative design workspace",
+    src: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1600&q=80",
+    alt: "Film set atmosphere",
   },
   {
-    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1800&q=80",
-    alt: "Live event atmosphere",
+    src: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1600&q=80",
+    alt: "Urban night media",
   },
 ];
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden bg-ink noise">
-      {/* Background montage */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3">
-          {slides.map((slide, i) => (
-            <div
-              key={slide.src}
-              className={`relative overflow-hidden ${i === 0 ? "block" : "hidden md:block"}`}
-            >
-              <div
-                className={`absolute inset-0 ${i % 2 === 0 ? "ken-burns" : "ken-burns-alt"}`}
-              >
-                <Image
-                  src={slide.src}
-                  alt={slide.alt}
-                  fill
-                  priority={i === 0}
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover opacity-40"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/50 to-ink" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-transparent to-ink/60" />
+    <section className="relative min-h-screen flex items-end overflow-hidden bg-bg noise">
+      <div className="absolute inset-0">
+        <Image
+          src={montage[0].src}
+          alt={montage[0].alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover ken-burns opacity-50"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-bg/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-bg/80 via-transparent to-bg/30" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1600px] flex-col justify-end px-5 md:px-10 lg:px-14 pb-16 md:pb-24 pt-32">
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 md:px-10 lg:px-14 pb-20 md:pb-28 pt-36">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mb-6 text-xs md:text-sm tracking-[0.35em] uppercase text-lime font-medium"
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="mb-6 text-[10px] sm:text-xs tracking-[0.32em] uppercase text-gold"
         >
-          Creative Media · Production · Brand Experiences
+          360° MEDIA · MARKETING · ADVERTISING · CREATIVE
         </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[0.9] tracking-tight text-cream max-w-5xl"
+          transition={{ delay: 0.45, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6.5rem] font-medium leading-[0.92] tracking-tight text-text max-w-5xl"
         >
-          WE MAKE BRANDS
+          WE CREATE
           <br />
-          <span className="text-lime">IMPOSSIBLE</span> TO IGNORE.
+          VISIBILITY.
+          <br />
+          <span className="text-gold">WE BUILD IMPACT.</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
-          className="mt-8 max-w-xl text-base md:text-lg text-cream/70 leading-relaxed"
+          transition={{ delay: 0.65, duration: 0.8 }}
+          className="mt-8 max-w-xl text-base md:text-lg text-muted leading-relaxed"
         >
-          Lumiere Veritas is a creative partner for brands that demand presence —
-          across media, production, digital, outdoor, and live experiences.
+          Lumiere Veritas Media Solutions is a creative partner for brands that
+          want presence — strategy, creativity, media, and execution under one
+          roof.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.7 }}
-          className="mt-10 flex flex-wrap gap-4"
+          transition={{ delay: 0.85, duration: 0.7 }}
+          className="mt-10 flex flex-wrap items-center gap-4 md:gap-6"
         >
           <Link
             href="#contact"
-            className="rounded-full bg-lime px-8 py-4 text-sm md:text-base font-medium text-ink hover:bg-cream transition-colors"
+            className="inline-flex items-center rounded-full bg-gold px-7 py-3.5 text-sm font-medium tracking-wide text-bg hover:bg-highlight transition-colors"
           >
-            START A PROJECT
+            Start a Project →
           </Link>
           <Link
-            href="#work"
-            className="rounded-full border border-cream/40 px-8 py-4 text-sm md:text-base font-medium text-cream hover:border-lime hover:text-lime transition-colors"
+            href="#services"
+            className="inline-flex items-center gap-2 text-sm tracking-wide text-text/80 hover:text-gold transition-colors"
           >
-            VIEW OUR WORK
+            Explore Our Services
+            <span className="text-gold">↓</span>
           </Link>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="absolute bottom-8 right-5 md:right-10 lg:right-14 hidden sm:flex flex-col items-end gap-2"
-        >
-          <span className="text-[10px] tracking-[0.3em] uppercase text-cream/40">
-            Scroll
-          </span>
-          <div className="h-12 w-px bg-gradient-to-b from-lime to-transparent" />
         </motion.div>
       </div>
     </section>
