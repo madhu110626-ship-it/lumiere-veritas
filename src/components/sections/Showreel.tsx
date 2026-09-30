@@ -13,7 +13,7 @@ export function Showreel() {
       <div className="mx-auto max-w-[1600px] px-5 md:px-10 lg:px-14">
         <div className="relative overflow-hidden rounded-sm min-h-[420px] md:min-h-[560px] flex items-center justify-center">
           <Image
-            src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1800&q=80"
+            src="/media/showreel.jpg"
             alt="Cinematic showreel atmosphere"
             fill
             sizes="100vw"

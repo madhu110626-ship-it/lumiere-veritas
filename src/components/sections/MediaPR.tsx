@@ -8,7 +8,7 @@ export function MediaPR() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal className="relative aspect-[16/11] overflow-hidden order-2 lg:order-1">
             <Image
-              src="https://images.unsplash.com/photo-1504711434719-321adfb4a03e?w=1400&q=80"
+              src="/media/media-pr.jpg"
               alt="Editorial media atmosphere"
               fill
               sizes="50vw"

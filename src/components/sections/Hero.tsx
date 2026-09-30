@@ -6,15 +6,15 @@ import { motion } from "framer-motion";
 
 const montage = [
   {
-    src: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1600&q=80",
+    src: "/media/hero.jpg",
     alt: "Cinematic production lighting",
   },
   {
-    src: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1600&q=80",
+    src: "/media/showreel.jpg",
     alt: "Film set atmosphere",
   },
   {
-    src: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1600&q=80",
+    src: "/media/urban-night.jpg",
     alt: "Urban night media",
   },
 ];

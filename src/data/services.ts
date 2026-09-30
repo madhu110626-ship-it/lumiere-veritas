@@ -14,8 +14,7 @@ export const capabilities: Capability[] = [
     title: "Media & PR",
     description:
       "Publicity, editorial outreach, and media presence that puts your brand in the conversation.",
-    image:
-      "https://images.unsplash.com/photo-1504711434719-321adfb4a03e?w=1200&q=80",
+    image: "/media/media-pr.jpg",
   },
   {
     id: 2,
@@ -23,8 +22,7 @@ export const capabilities: Capability[] = [
     title: "Digital & Social",
     description:
       "Platform-native storytelling and promotion that builds community and converts attention.",
-    image:
-      "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1200&q=80",
+    image: "/media/digital-social.jpg",
   },
   {
     id: 3,
@@ -32,8 +30,7 @@ export const capabilities: Capability[] = [
     title: "Advertising",
     description:
       "Campaign ideas crafted to stop the scroll, own the street, and stick in memory.",
-    image:
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80",
+    image: "/media/advertising.jpg",
   },
   {
     id: 4,
@@ -41,8 +38,7 @@ export const capabilities: Capability[] = [
     title: "Video",
     description:
       "Commercials, brand films, photography, and post — cinematic craft with commercial intent.",
-    image:
-      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&q=80",
+    image: "/media/video.jpg",
   },
   {
     id: 5,
@@ -50,8 +46,7 @@ export const capabilities: Capability[] = [
     title: "AI & Motion",
     description:
       "AI-assisted production and motion graphics — human creativity, intelligently accelerated.",
-    image:
-      "https://images.unsplash.com/photo-1550745165-9bc8b95cd2eb?w=1200&q=80",
+    image: "/media/ai-motion.jpg",
   },
   {
     id: 6,
@@ -59,8 +54,7 @@ export const capabilities: Capability[] = [
     title: "Branding",
     description:
       "Identity, visual systems, and digital content that give your brand a distinctive voice.",
-    image:
-      "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1200&q=80",
+    image: "/media/branding.jpg",
   },
   {
     id: 7,
@@ -68,8 +62,7 @@ export const capabilities: Capability[] = [
     title: "Events",
     description:
       "Design, planning, and creative management for moments that matter.",
-    image:
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80",
+    image: "/media/events.jpg",
   },
   {
     id: 8,
@@ -77,8 +70,7 @@ export const capabilities: Capability[] = [
     title: "Outdoor & Print",
     description:
       "Hoardings, billboards, pamphlets, brochures — presence in the physical world.",
-    image:
-      "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=1200&q=80",
+    image: "/media/outdoor.jpg",
   },
   {
     id: 9,
@@ -86,8 +78,7 @@ export const capabilities: Capability[] = [
     title: "Lead Generation",
     description:
       "Sales funnel creative and promotion that turns interest into qualified pipeline.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    image: "/media/leads.jpg",
   },
   {
     id: 10,
@@ -95,8 +86,7 @@ export const capabilities: Capability[] = [
     title: "Spaces & Interiors",
     description:
       "Interior concepts and brand environments designed with intentional atmosphere.",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80",
+    image: "/media/interiors.jpg",
   },
 ];
 

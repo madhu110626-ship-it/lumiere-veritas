@@ -43,7 +43,7 @@ export function AICreative() {
           </div>
           <Reveal delay={0.1} className="relative aspect-[4/5] md:aspect-[5/4] overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1550745165-9bc8b95cd2eb?w=1400&q=80"
+              src="/media/ai-motion.jpg"
               alt="Abstract creative technology atmosphere"
               fill
               sizes="50vw"

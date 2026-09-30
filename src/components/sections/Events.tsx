@@ -8,7 +8,7 @@ export function Events() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal className="relative aspect-[16/11] overflow-hidden order-2 lg:order-1">
             <Image
-              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1400&q=80"
+              src="/media/events.jpg"
               alt="Live event atmosphere"
               fill
               sizes="50vw"

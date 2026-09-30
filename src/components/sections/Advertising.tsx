@@ -30,7 +30,7 @@ export function Advertising() {
           </div>
           <Reveal delay={0.1} className="relative aspect-[16/11] overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=1400&q=80"
+              src="/media/advertising.jpg"
               alt="Creative advertising atmosphere"
               fill
               sizes="50vw"
