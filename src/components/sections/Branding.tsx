@@ -21,8 +21,9 @@ export function Branding() {
             </Reveal>
             <Reveal delay={0.16}>
               <p className="mt-8 text-muted leading-relaxed max-w-lg">
-                Identity systems, visual language, and content that make a brand
-                unmistakable — starting with how we present ourselves.
+                Website designing, logo designing, and visual systems for brand
+                identity — content that makes a brand unmistakable, starting
+                with how we present ourselves.
               </p>
             </Reveal>
           </div>
@@ -33,7 +34,7 @@ export function Branding() {
                 alt="Lumiere Veritas Media Solutions — agency identity"
                 width={480}
                 height={320}
-                className="w-full max-w-md h-auto object-contain"
+                className="w-full max-w-md h-auto object-contain rounded-lg bg-white"
               />
               <p className="absolute bottom-6 left-0 right-0 text-center text-[10px] tracking-[0.28em] uppercase text-muted">
                 Agency identity

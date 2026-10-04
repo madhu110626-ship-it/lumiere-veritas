@@ -49,7 +49,7 @@ export default function AboutPage() {
                   alt="Lumiere Veritas Media Solutions"
                   width={420}
                   height={280}
-                  className="w-full max-w-sm h-auto object-contain"
+                  className="w-full max-w-sm h-auto object-contain rounded-lg bg-white"
                 />
               </div>
             </Reveal>

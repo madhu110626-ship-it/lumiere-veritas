@@ -17,8 +17,8 @@ export function MediaPR() {
           </Reveal>
           <div className="order-1 lg:order-2">
             <Reveal>
-              <p className="mb-4 text-xs tracking-[0.28em] uppercase text-gold">
-                Media &amp; PR
+              <p className="mb-4 text-xs tracking-[0.22em] uppercase text-gold">
+                News Media Publicity, Promotion &amp; PR
               </p>
             </Reveal>
             <Reveal delay={0.08}>
@@ -32,10 +32,10 @@ export function MediaPR() {
             </Reveal>
             <Reveal delay={0.16}>
               <p className="mt-8 text-muted leading-relaxed max-w-lg">
-                Publicity and media presence designed for brands that want to
-                enter the cultural conversation — not just buy impressions.
-                Editorial outreach, press narrative, and promotion with
-                discipline.
+                News media publicity, promotion, and public relations for
+                brands that want to enter the cultural conversation — not just
+                buy impressions. Editorial outreach, press narrative, and
+                promotion with discipline.
               </p>
             </Reveal>
           </div>

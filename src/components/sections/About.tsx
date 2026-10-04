@@ -42,7 +42,7 @@ export function About() {
                 alt="Lumiere Veritas Media Solutions"
                 width={360}
                 height={240}
-                className="w-full max-w-xs h-auto object-contain"
+                className="w-full max-w-xs h-auto object-contain rounded-lg bg-white"
               />
             </div>
           </Reveal>

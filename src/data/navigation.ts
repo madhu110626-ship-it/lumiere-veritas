@@ -22,12 +22,17 @@ export const socialLinks = [
 ] as const;
 
 export const serviceOptions = [
-  "Media & PR",
+  "News Media Publicity, Promotion & PR",
   "Digital & Social",
+  "Influencer Marketing",
   "Advertising",
   "Video Production",
+  "Brand Shoot & Commercial Production",
   "AI & Motion",
   "Branding",
+  "Website Designing & Logo Designing",
+  "Podcast Content Creation & Promotion",
+  "SEO & Paid Ads Campaign Generation",
   "Events",
   "Outdoor & Print",
   "Lead Generation",

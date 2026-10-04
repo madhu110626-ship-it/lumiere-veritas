@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { capabilities } from "@/data/services";
+import { capabilities, services } from "@/data/services";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function Services() {
@@ -20,7 +20,7 @@ export function Services() {
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[0.95] text-text">
-                16 CREATIVE &amp;
+                {services.length} CREATIVE &amp;
                 <br />
                 MARKETING
                 <br />
@@ -30,8 +30,9 @@ export function Services() {
           </div>
           <Reveal delay={0.12}>
             <p className="max-w-sm text-muted text-sm md:text-base leading-relaxed">
-              Ten editorial pillars — spanning media, marketing, advertising,
-              and creative production.
+              Ten editorial pillars — news media publicity and PR, influencer
+              and podcasts, brand shoots, websites and logos, SEO and paid ads,
+              and the wider practice.
             </p>
           </Reveal>
         </div>
@@ -55,20 +56,25 @@ export function Services() {
                   }`}
                 />
                 <div className="flex items-baseline gap-5">
-                  <span className="text-xs tracking-[0.2em] text-gold/70 font-medium">
+                  <span className="text-xs tracking-[0.2em] text-gold/70 font-medium shrink-0">
                     {cap.number}
                   </span>
                   <span
-                    className={`font-display text-2xl xl:text-3xl font-medium tracking-tight transition-colors ${
+                    className={`font-display text-xl xl:text-2xl font-medium tracking-tight leading-tight transition-colors ${
                       active === i ? "text-gold" : "text-text"
                     }`}
                   >
                     {cap.title}
                   </span>
                 </div>
+                {cap.highlights && (
+                  <p className="mt-2 pl-12 text-[11px] tracking-[0.14em] uppercase text-gold/80">
+                    {cap.highlights.join(" · ")}
+                  </p>
+                )}
                 <p
                   className={`mt-2 pl-12 text-sm leading-relaxed transition-opacity duration-300 ${
-                    active === i ? "opacity-100 text-muted" : "opacity-0"
+                    active === i ? "opacity-100 text-muted" : "opacity-0 h-0 overflow-hidden"
                   }`}
                 >
                   {cap.description}
@@ -98,7 +104,7 @@ export function Services() {
                   <p className="text-xs tracking-[0.28em] uppercase text-gold mb-2">
                     {cap.number}
                   </p>
-                  <p className="font-display text-3xl text-text">{cap.title}</p>
+                  <p className="font-display text-2xl md:text-3xl text-text leading-tight">{cap.title}</p>
                 </div>
               </div>
             ))}
@@ -112,14 +118,19 @@ export function Services() {
               key={cap.id}
               className="group border-b border-text/10 py-8"
             >
-              <div className="flex items-baseline gap-4 mb-4">
-                <span className="text-xs tracking-[0.2em] text-gold">
+              <div className="flex items-baseline gap-4 mb-3">
+                <span className="text-xs tracking-[0.2em] text-gold shrink-0">
                   {cap.number}
                 </span>
-                <h3 className="font-display text-2xl sm:text-3xl font-medium text-text">
+                <h3 className="font-display text-2xl sm:text-3xl font-medium text-text leading-tight">
                   {cap.title}
                 </h3>
               </div>
+              {cap.highlights && (
+                <p className="mb-3 pl-10 text-[11px] tracking-[0.14em] uppercase text-gold/80">
+                  {cap.highlights.join(" · ")}
+                </p>
+              )}
               <p className="text-sm text-muted leading-relaxed mb-5 pl-10">
                 {cap.description}
               </p>

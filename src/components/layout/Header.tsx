@@ -49,7 +49,7 @@ export function Header() {
               alt="Lumiere Veritas Media Solutions"
               width={200}
               height={133}
-              className="h-10 md:h-12 w-auto object-contain"
+              className="h-14 md:h-16 w-auto object-contain rounded-md bg-white"
               priority
             />
           </Link>

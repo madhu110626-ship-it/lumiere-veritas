@@ -14,7 +14,7 @@ export function Footer() {
                 alt="Lumiere Veritas Media Solutions"
                 width={220}
                 height={147}
-                className="h-16 w-auto object-contain"
+                className="h-28 md:h-32 w-auto object-contain rounded-lg bg-white"
               />
             </Link>
             <p className="mt-6 text-xs tracking-[0.22em] uppercase text-gold leading-relaxed">

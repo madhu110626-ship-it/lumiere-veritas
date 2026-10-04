@@ -8,7 +8,7 @@ import { services } from "@/data/services";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "16 creative & marketing capabilities — PR, social, campaigns, video, AI, outdoor, events, branding & more.",
+    "Creative and marketing capabilities — news media publicity and PR, influencer, brand shoots, websites and logos, SEO and paid ads, podcasts, and more.",
 };
 
 export default function ServicesPage() {
@@ -30,8 +30,10 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-xl text-muted">
-              Sixteen creative &amp; marketing capabilities under one partner —
-              360° media · marketing · advertising · creative.
+              News media publicity, promotion, and PR — with influencer
+              marketing, brand shoots, website and logo design, SEO and paid
+              ads, and podcasts — under one partner. 360° media · marketing ·
+              advertising · creative.
             </p>
           </Reveal>
         </div>

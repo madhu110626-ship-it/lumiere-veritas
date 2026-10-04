@@ -77,12 +77,9 @@ export function Intro() {
                   <Image
                     src="/brand/logo.png"
                     alt=""
-                    width={280}
-                    height={187}
-                    className="h-28 sm:h-36 w-auto object-contain object-top"
-                    style={{
-                      clipPath: "inset(0 0 42% 0)",
-                    }}
+                    width={480}
+                    height={438}
+                    className="h-36 sm:h-44 w-auto object-contain rounded-lg bg-white"
                     priority
                   />
                 </motion.div>
@@ -96,11 +93,11 @@ export function Intro() {
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Image
-                    src="/brand/logo.png"
+                    src="/brand/logo-full.png"
                     alt="Lumiere Veritas Media Solutions"
-                    width={420}
-                    height={280}
-                    className="h-36 sm:h-48 md:h-56 w-auto object-contain"
+                    width={640}
+                    height={584}
+                    className="h-48 sm:h-60 md:h-72 w-auto object-contain rounded-lg bg-white"
                     priority
                   />
                 </motion.div>
