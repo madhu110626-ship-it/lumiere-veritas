@@ -1,12 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
+import { showreelFilm } from "@/data/projects";
 
 export function Showreel() {
   const [open, setOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = false;
+    void video.play().catch(() => {
+      video.muted = true;
+      void video.play().catch(() => undefined);
+    });
+  }, [open]);
 
   return (
     <section id="showreel" className="relative bg-bg py-24 md:py-32">
@@ -51,6 +64,11 @@ export function Showreel() {
                 </svg>
               </button>
             </Reveal>
+            <Reveal delay={0.22}>
+              <p className="mt-6 text-[10px] tracking-[0.22em] uppercase text-muted">
+                {showreelFilm.title} · AI Creative concept artwork
+              </p>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -58,7 +76,7 @@ export function Showreel() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-bg/95 backdrop-blur-sm p-6"
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-bg/95 backdrop-blur-sm p-4 md:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -69,27 +87,37 @@ export function Showreel() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.35 }}
-              className="relative w-full max-w-3xl aspect-video bg-bg-secondary border border-gold/30 flex flex-col items-center justify-center p-10 text-center"
+              className="relative w-full max-w-[420px]"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="absolute top-4 right-4 text-muted hover:text-gold text-sm tracking-wide"
+                className="absolute -top-10 right-0 text-muted hover:text-gold text-sm tracking-wide"
               >
                 Close
               </button>
-              <div className="h-16 w-16 rounded-full border border-gold/50 flex items-center justify-center text-gold mb-6">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 ml-0.5">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+              <div className="relative aspect-[9/16] max-h-[78vh] w-full bg-black border border-gold/30">
+                <video
+                  ref={videoRef}
+                  className="h-full w-full object-contain bg-black"
+                  src={showreelFilm.src}
+                  poster={showreelFilm.poster}
+                  controls
+                  autoPlay
+                  playsInline
+                  preload="metadata"
+                  aria-label={`${showreelFilm.title}. AI Creative concept artwork.`}
+                />
               </div>
-              <p className="font-display text-2xl md:text-3xl text-text mb-3">
-                Showreel Coming Soon
+              <p className="mt-4 text-center text-[10px] tracking-[0.28em] uppercase text-gold">
+                AI Creative
               </p>
-              <p className="text-sm text-muted max-w-md leading-relaxed">
-                An elegant placeholder for the Lumiere Veritas reel. Replace this
-                modal with your film when ready.
+              <p className="mt-1 text-center font-display text-xl text-text">
+                {showreelFilm.title}
+              </p>
+              <p className="mt-1 text-center text-xs text-muted">
+                Concept artwork · AI-assisted commercial. Not client work.
               </p>
             </motion.div>
           </motion.div>

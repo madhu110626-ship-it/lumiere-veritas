@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { concepts, conceptFilters } from "@/data/projects";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
+import { VideoTile } from "@/components/ui/VideoTile";
 
 type WorkProps = {
   showAllLink?: boolean;
@@ -13,6 +14,7 @@ type WorkProps = {
 
 export function Work({ showAllLink = true, limit }: WorkProps) {
   const [filter, setFilter] = useState<(typeof conceptFilters)[number]>("All");
+  const [playingId, setPlayingId] = useState<string | null>(null);
 
   const items = useMemo(() => {
     const filtered =
@@ -82,17 +84,36 @@ export function Work({ showAllLink = true, limit }: WorkProps) {
             <StaggerItem key={item.id}>
               <article className="group relative overflow-hidden bg-bg-secondary">
                 <div className="relative aspect-[4/5] overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width:768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  {item.video ? (
+                    <VideoTile
+                      src={item.video}
+                      poster={item.image}
+                      label="AI Creative"
+                      title={item.title}
+                      minimal
+                      onEngage={() => setPlayingId(item.id)}
+                    />
+                  ) : (
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width:768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  )}
+                  <div
+                    className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent transition-opacity duration-400 ${
+                      playingId === item.id ? "opacity-0" : "opacity-80"
+                    }`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent opacity-80" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div
+                    className={`pointer-events-none absolute bottom-0 left-0 right-0 p-6 transition-opacity duration-400 ${
+                      playingId === item.id ? "opacity-0" : "opacity-100"
+                    }`}
+                  >
                     <p className="text-[10px] tracking-[0.28em] uppercase text-gold mb-2">
-                      {item.category}
+                      {item.category === "AI" ? "AI Creative" : item.category}
                     </p>
                     <h3 className="font-display text-2xl md:text-3xl font-medium text-text">
                       {item.title}
@@ -101,7 +122,7 @@ export function Work({ showAllLink = true, limit }: WorkProps) {
                       {item.description}
                     </p>
                   </div>
-                  <div className="absolute top-0 left-0 h-[2px] w-0 bg-gold transition-all duration-500 group-hover:w-full" />
+                  <div className="pointer-events-none absolute top-0 left-0 h-[2px] w-0 bg-gold transition-all duration-500 group-hover:w-full" />
                 </div>
               </article>
             </StaggerItem>

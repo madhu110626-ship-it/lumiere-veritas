@@ -23,7 +23,7 @@ export default function HomePage() {
       <BrandStatement />
       <Services />
       <Signature />
-      <Work limit={6} />
+      <Work limit={7} />
       <Showreel />
       <AICreative />
       <MediaPR />

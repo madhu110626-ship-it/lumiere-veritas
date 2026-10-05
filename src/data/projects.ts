@@ -4,6 +4,8 @@ export type Concept = {
   category: string;
   image: string;
   description: string;
+  /** Optional concept film. Not a client case. */
+  video?: string;
 };
 
 export const conceptFilters = [
@@ -17,8 +19,17 @@ export const conceptFilters = [
   "AI",
 ] as const;
 
-/** Creative Possibilities — concept placeholders, not client work */
+/** Creative Possibilities — concept directions, not client work */
 export const concepts: Concept[] = [
+  {
+    id: "ai-commercial",
+    title: "AI Commercial Concept 02",
+    category: "AI",
+    image: "/media/videos/ai-02.jpg",
+    video: "/media/videos/ai-02.mp4",
+    description:
+      "AI Creative concept artwork — a commercial study, not a client project or result.",
+  },
   {
     id: "brand-campaign",
     title: "Brand Campaign",
@@ -67,16 +78,46 @@ export const concepts: Concept[] = [
     description:
       "Distinctive visual and verbal systems that make a brand unmistakable.",
   },
-  {
-    id: "ai-commercial",
-    title: "AI Commercial",
-    category: "AI",
-    image: "/media/ai-motion.jpg",
-    description:
-      "Human-directed, AI-accelerated commercial production — speed without losing soul.",
-  },
 ];
 
 /** @deprecated alias for compatibility */
 export const projects = concepts;
 export const projectFilters = conceptFilters;
+
+export type AICreativeFilm = {
+  id: string;
+  title: string;
+  src: string;
+  poster: string;
+};
+
+/** Concept artwork only. Titles do not name clients. */
+export const aiCreativeFilms: AICreativeFilm[] = [
+  {
+    id: "01",
+    title: "AI Commercial Concept 01",
+    src: "/media/videos/ai-01.mp4",
+    poster: "/media/videos/ai-01.jpg",
+  },
+  {
+    id: "02",
+    title: "AI Commercial Concept 02",
+    src: "/media/videos/ai-02.mp4",
+    poster: "/media/videos/ai-02.jpg",
+  },
+  {
+    id: "03",
+    title: "AI Commercial Concept 03",
+    src: "/media/videos/ai-03.mp4",
+    poster: "/media/videos/ai-03.jpg",
+  },
+  {
+    id: "04",
+    title: "AI Commercial Concept 04",
+    src: "/media/videos/ai-04.mp4",
+    poster: "/media/videos/ai-04.jpg",
+  },
+];
+
+/** Portrait product study used as the showreel opener. */
+export const showreelFilm = aiCreativeFilms[0];
