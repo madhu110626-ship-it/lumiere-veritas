@@ -1,3 +1,5 @@
+export const siteUrl = "https://lumiereveritasmedia.com";
+
 export const navLinks = [
   { href: "/work", label: "Work", hash: "#work" },
   { href: "/services", label: "Services", hash: "#services" },

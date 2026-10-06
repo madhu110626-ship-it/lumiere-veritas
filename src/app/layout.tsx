@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { siteUrl } from "@/data/navigation";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -19,6 +20,10 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "Lumiere Veritas Media Solutions",
     template: "%s · Lumiere Veritas",
@@ -39,7 +44,16 @@ export const metadata: Metadata = {
     description:
       "We create visibility. We build impact. 360° media · marketing · advertising · creative.",
     type: "website",
+    url: siteUrl,
+    siteName: "Lumiere Veritas Media Solutions",
     images: [{ url: "/brand/logo.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lumiere Veritas Media Solutions",
+    description:
+      "We create visibility. We build impact. 360° media · marketing · advertising · creative.",
+    images: ["/brand/logo.png"],
   },
   icons: {
     icon: "/brand/logo.png",
