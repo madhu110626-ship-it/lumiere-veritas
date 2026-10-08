@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { contactInfo, navLinks, socialLinks } from "@/data/navigation";
+import { activeSocialLinks, contactInfo, navLinks } from "@/data/navigation";
 
 export function Footer() {
   return (
@@ -81,14 +81,15 @@ export function Footer() {
               Social
             </p>
             <ul className="space-y-3">
-              {socialLinks.map((s) => (
+              {activeSocialLinks.map((s) => (
                 <li key={s.label}>
                   <a
                     href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm text-text/75 hover:text-gold transition-colors"
                   >
                     {s.label}
-                    <span className="text-muted text-xs ml-2">#</span>
                   </a>
                 </li>
               ))}

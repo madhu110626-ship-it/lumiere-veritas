@@ -17,11 +17,17 @@ export const contactInfo = {
 } as const;
 
 export const socialLinks = [
-  { label: "Instagram", href: "#" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/lumiereveritasmediasolutions/",
+  },
   { label: "LinkedIn", href: "#" },
   { label: "YouTube", href: "#" },
   { label: "X", href: "#" },
 ] as const;
+
+// Only links with a real destination are rendered (placeholders use "#").
+export const activeSocialLinks = socialLinks.filter((s) => s.href !== "#");
 
 export const serviceOptions = [
   "News Media Publicity, Promotion & PR",
