@@ -10,6 +10,7 @@
     "dev:3456": "next dev -p 3456 -H 0.0.0.0"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "framer-motion": "^13.4.6",
     "next": "15.5.26",
     "react": "19.1.0",

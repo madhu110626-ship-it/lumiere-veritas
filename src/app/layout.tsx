@@ -4,6 +4,9 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { siteUrl } from "@/data/navigation";
+import { EnquiryModal } from "@/components/enquiry/EnquiryModal";
+import { VisitPing } from "@/components/enquiry/VisitPing";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -72,6 +75,9 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <WhatsAppFloat />
+        <EnquiryModal />
+        <VisitPing />
+        <Analytics />
       </body>
     </html>
   );

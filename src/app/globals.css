@@ -124,3 +124,9 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@keyframes lvFade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes lvRise { from { opacity: 0; transform: translateY(24px) } to { opacity: 1; transform: none } }
+.lv-fade { animation: lvFade .35s ease-out }
+.lv-rise { animation: lvRise .45s cubic-bezier(.2,.8,.2,1) }
+@media (prefers-reduced-motion: reduce) { .lv-fade, .lv-rise { animation: none } }
