@@ -1,5 +1,6 @@
 "use client";
 import { FormEvent, useState } from "react";
+import { sendOwnerEmail, istNow } from "@/lib/notifyClient";
 import { serviceOptions, contactInfo } from "@/data/navigation";
 
 const input = "w-full bg-bg border border-text/15 px-4 py-3 text-text text-sm focus:border-gold outline-none transition-colors";
@@ -13,10 +14,14 @@ export function EnquiryForm({ source, compact = false, idPrefix = "f" }: { sourc
     const data = Object.fromEntries(new FormData(form).entries());
     setState("sending");
     try {
-      const r = await fetch("/api/enquiry", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, source, page: location.pathname }) });
-      const j = await r.json();
-      if (!j.ok) throw new Error();
+      const d = data as Record<string, string>;
+      if (d.website) { setState("done"); return; }
+      const ok = await sendOwnerEmail(`New enquiry — ${d.name}`, {
+        Name: d.name, Company: d.company || "", Email: d.email, Phone: d.phone || "",
+        "Service Required": d.service || "", "Project Details": d.details || "",
+        "Submitted from": source, Page: location.pathname, Time: istNow(),
+      }, d.email);
+      if (!ok) throw new Error();
       setState("done"); form.reset();
     } catch { setState("error"); }
   }
