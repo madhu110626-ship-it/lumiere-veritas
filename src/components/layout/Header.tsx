@@ -42,6 +42,19 @@ export function Header() {
             : "bg-transparent"
         }`}
       >
+        <a
+          href="https://wa.me/919892027604"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block overflow-hidden bg-coral text-white text-[11px] md:text-xs tracking-[0.18em] uppercase py-2"
+          aria-label="Free 15-minute visibility audit on WhatsApp +91 98920 27604"
+        >
+          <div className="lv-ticker flex w-max whitespace-nowrap" aria-hidden="true">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <span key={i} className="px-8">Free 15-min Visibility Audit · WhatsApp +91 98920 27604 ✦</span>
+            ))}
+          </div>
+        </a>
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 md:px-10 lg:px-14 py-3 md:py-4">
           <Link href="/" className="relative z-50 flex items-center shrink-0">
             <Image
@@ -66,7 +79,7 @@ export function Header() {
             ))}
             <Link
               href={isHome ? "#contact" : "/contact"}
-              className="ml-2 rounded-full border border-gold/60 px-5 py-2.5 text-xs tracking-[0.18em] uppercase text-gold hover:bg-gold hover:text-bg transition-colors"
+              className="ml-2 rounded-full border border-gold/60 px-5 py-2.5 text-xs tracking-[0.18em] uppercase text-gold hover:bg-coral hover:border-coral hover:text-white transition-colors"
             >
               Let&apos;s Talk →
             </Link>
@@ -149,7 +162,7 @@ export function Header() {
               <Link
                 href={isHome ? "#contact" : "/contact"}
                 onClick={() => setOpen(false)}
-                className="inline-flex mt-4 rounded-full bg-gold px-6 py-3 text-bg font-medium tracking-wide"
+                className="inline-flex mt-4 rounded-full bg-coral px-6 py-3 text-white font-medium tracking-wide"
               >
                 Let&apos;s Talk →
               </Link>

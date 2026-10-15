@@ -39,8 +39,8 @@ export function EnquiryModal() {
 
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6 lv-fade" onMouseDown={(e) => { if (e.target === e.currentTarget) setOpen(false); }} style={{ background: "rgba(5,5,5,0.78)", backdropFilter: "blur(6px)" }}>
-      <div ref={dialog} role="dialog" aria-modal="true" aria-labelledby="lv-modal-title" className="relative w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto bg-[#050505] border border-[#C9A45C]/40 sm:rounded-sm rounded-t-2xl shadow-[0_0_80px_rgba(201,164,92,0.15)] px-6 py-8 sm:px-10 sm:py-10 lv-rise">
+    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6 lv-fade" onMouseDown={(e) => { if (e.target === e.currentTarget) setOpen(false); }} style={{ background: "rgba(42,42,42,0.55)", backdropFilter: "blur(6px)" }}>
+      <div ref={dialog} role="dialog" aria-modal="true" aria-labelledby="lv-modal-title" className="relative w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto bg-bg-secondary border border-highlight/50 sm:rounded-sm rounded-t-2xl shadow-[0_0_80px_rgba(42,42,42,0.18)] px-6 py-8 sm:px-10 sm:py-10 lv-rise">
         <button type="button" onClick={() => setOpen(false)} aria-label="Close enquiry form" className="absolute right-4 top-4 h-10 w-10 rounded-full border border-text/15 text-text/70 hover:text-gold hover:border-gold transition-colors text-xl leading-none">×</button>
         <p className="mb-3 text-xs tracking-[0.28em] uppercase text-gold">Start a project</p>
         <h2 id="lv-modal-title" className="font-display text-3xl sm:text-4xl font-medium leading-tight text-text pr-10">

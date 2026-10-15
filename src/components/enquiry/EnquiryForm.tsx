@@ -54,7 +54,7 @@ export function EnquiryForm({ source, compact = false, idPrefix = "f" }: { sourc
         <textarea id={id("details")} name="details" rows={compact ? 3 : 5} className={`${input} resize-y`} placeholder="Tell us what you're building…" />
       </div>
       <div className="flex flex-wrap items-center gap-4 pt-1">
-        <button type="submit" disabled={state === "sending"} className="rounded-full bg-gold px-8 py-3.5 text-sm font-medium tracking-wide text-bg hover:bg-highlight transition-colors disabled:opacity-60">
+        <button type="submit" disabled={state === "sending"} className="rounded-full bg-coral px-8 py-3.5 text-sm font-medium tracking-wide text-white hover:bg-coral-dark transition-colors disabled:opacity-60">
           {state === "sending" ? "Sending…" : "Send Enquiry →"}
         </button>
         {state === "error" && (

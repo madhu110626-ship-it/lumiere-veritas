@@ -51,7 +51,7 @@ export function Showreel() {
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="mt-10 inline-flex h-20 w-20 md:h-24 md:w-24 items-center justify-center rounded-full border border-gold/70 text-gold hover:bg-gold hover:text-bg transition-all duration-400 group"
+                className="mt-10 inline-flex h-20 w-20 md:h-24 md:w-24 items-center justify-center rounded-full border border-gold/70 text-gold hover:bg-coral hover:border-coral hover:text-white transition-all duration-400 group"
                 aria-label="Play showreel"
               >
                 <svg

@@ -69,7 +69,7 @@ export function Work({ showAllLink = true, limit }: WorkProps) {
                 onClick={() => setFilter(f)}
                 className={`px-4 py-2 text-xs tracking-[0.16em] uppercase rounded-full border transition-colors ${
                   filter === f
-                    ? "border-gold bg-gold text-bg"
+                    ? "border-coral bg-coral text-white"
                     : "border-text/20 text-muted hover:border-gold/50 hover:text-gold"
                 }`}
               >

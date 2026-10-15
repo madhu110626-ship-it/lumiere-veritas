@@ -77,7 +77,7 @@ export function Hero() {
         >
           <Link
             href="#contact"
-            className="inline-flex items-center rounded-full bg-gold px-7 py-3.5 text-sm font-medium tracking-wide text-bg hover:bg-highlight transition-colors"
+            className="inline-flex items-center rounded-full bg-coral px-7 py-3.5 text-sm font-medium tracking-wide text-white hover:bg-coral-dark transition-colors"
           >
             Start a Project →
           </Link>

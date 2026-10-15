@@ -20,11 +20,11 @@ export function Button({
     "inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm md:text-base font-medium tracking-wide transition-all duration-300 rounded-full";
 
   const variants = {
-    primary: "bg-text text-bg hover:bg-gold hover:text-bg",
+    primary: "bg-coral text-white hover:bg-coral-dark",
     secondary:
       "border border-text/30 text-text hover:border-gold hover:text-gold bg-transparent",
     ghost: "text-text hover:text-gold underline-offset-4 hover:underline",
-    gold: "bg-gold text-bg hover:bg-highlight",
+    gold: "bg-coral text-white hover:bg-coral-dark",
   };
 
   const classes = `${base} ${variants[variant]} ${className}`;
