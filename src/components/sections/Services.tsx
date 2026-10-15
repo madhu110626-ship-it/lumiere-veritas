@@ -99,7 +99,7 @@ export function Services() {
                     active === i ? "scale-105" : "scale-100"
                   }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-10">
                   <p className="text-xs tracking-[0.28em] uppercase text-gold mb-2">
                     {cap.number}

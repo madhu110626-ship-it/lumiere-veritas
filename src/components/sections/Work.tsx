@@ -103,7 +103,7 @@ export function Work({ showAllLink = true, limit }: WorkProps) {
                     />
                   )}
                   <div
-                    className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent transition-opacity duration-400 ${
+                    className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-transparent transition-opacity duration-400 ${
                       playingId === item.id ? "opacity-0" : "opacity-80"
                     }`}
                   />
