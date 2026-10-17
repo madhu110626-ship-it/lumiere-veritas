@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { classifyVisit } from "@/lib/visitFilter";
 
 export const runtime = "nodejs";
-const BOT = /bot|crawl|spider|slurp|preview|headless|lighthouse|facebookexternalhit|whatsapp|monitor|curl|wget|python/i;
+export const dynamic = "force-dynamic";
 
 function device(ua: string) {
   const d = /ipad|tablet/i.test(ua) ? "Tablet" : /mobi|android|iphone/i.test(ua) ? "Mobile" : "Desktop";
@@ -10,12 +11,17 @@ function device(ua: string) {
   return `${d} · ${os} · ${br}`;
 }
 
-// Returns anonymous visit context (Vercel geo headers). Email is sent by the browser via FormSubmit
-// because FormSubmit's Cloudflare blocks server-to-server calls from Vercel.
+// Returns anonymous visit context (Vercel geo headers) only for likely-real people.
+// The email itself is sent by the browser via FormSubmit (FormSubmit's Cloudflare blocks Vercel server calls),
+// and only when this route says bot:false. Enquiry-form emails do not use this route.
 export async function POST(req: NextRequest) {
   const h = req.headers, ua = h.get("user-agent") || "";
-  if (!ua || BOT.test(ua)) return NextResponse.json({ ok: true, bot: true });
-  const dec = (v: string | null) => { try { return v ? decodeURIComponent(v) : ""; } catch { return v || ""; } };
+  let signals: { languages?: unknown; webdriver?: unknown } | undefined;
+  try { signals = await req.json(); } catch { signals = undefined; }
+  const v = classifyVisit(h, signals);
+  const noStore = { headers: { "Cache-Control": "no-store" } };
+  if (!v.human) return NextResponse.json({ ok: true, bot: true, skip: true, reason: v.reason }, noStore);
+  const dec = (x: string | null) => { try { return x ? decodeURIComponent(x) : ""; } catch { return x || ""; } };
   const location = [dec(h.get("x-vercel-ip-city")), dec(h.get("x-vercel-ip-country-region")), h.get("x-vercel-ip-country")].filter(Boolean).join(", ") || "Unknown";
-  return NextResponse.json({ ok: true, bot: false, location, device: device(ua), language: (h.get("accept-language") || "").split(",")[0] });
+  return NextResponse.json({ ok: true, bot: false, skip: false, location, device: device(ua), language: (h.get("accept-language") || "").split(",")[0] }, noStore);
 }
