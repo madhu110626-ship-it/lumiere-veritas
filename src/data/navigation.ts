@@ -23,7 +23,7 @@ export const socialLinks = [
   },
   { label: "LinkedIn", href: "#" },
   { label: "YouTube", href: "#" },
-  { label: "X", href: "#" },
+  { label: "X", href: "https://x.com/lumiereveritas" },
 ] as const;
 
 // Only links with a real destination are rendered (placeholders use "#").
