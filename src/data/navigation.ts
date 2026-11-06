@@ -22,7 +22,7 @@ export const socialLinks = [
     href: "https://www.instagram.com/lumiereveritasmediasolutions/",
   },
   { label: "LinkedIn", href: "#" },
-  { label: "YouTube", href: "#" },
+  { label: "YouTube", href: "https://www.youtube.com/@lumiereveritasmediasolutions" },
   { label: "X", href: "https://x.com/lumiereveritas" },
 ] as const;
 
