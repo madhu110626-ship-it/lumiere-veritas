@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { navLinks, contactInfo } from "@/data/navigation";
+import { GlobeIcon } from "@/components/ui/GlobeIcon";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -78,6 +79,12 @@ export function Header() {
               </Link>
             ))}
             <Link
+              href="/international"
+              className="inline-flex items-center gap-2 rounded-full bg-coral px-4 py-2.5 text-xs tracking-[0.14em] uppercase text-white hover:bg-coral-dark transition-colors"
+            >
+              <GlobeIcon /> International Clients
+            </Link>
+            <Link
               href={isHome ? "#contact" : "/contact"}
               className="ml-2 rounded-full border border-gold/60 px-5 py-2.5 text-xs tracking-[0.18em] uppercase text-gold hover:bg-coral hover:border-coral hover:text-white transition-colors"
             >
@@ -85,6 +92,14 @@ export function Header() {
             </Link>
           </nav>
 
+          <div className="lg:hidden relative z-50 flex items-center gap-2">
+          <Link
+            href="/international"
+            aria-label="International Clients"
+            className="inline-flex items-center gap-1.5 rounded-full bg-coral px-3 py-2 text-[10px] sm:text-xs tracking-[0.12em] uppercase text-white whitespace-nowrap"
+          >
+            <GlobeIcon className="h-3.5 w-3.5" /> International
+          </Link>
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -111,6 +126,7 @@ export function Header() {
               />
             </div>
           </button>
+          </div>
         </div>
       </header>
 
@@ -140,6 +156,13 @@ export function Header() {
                   </Link>
                 </motion.div>
               ))}
+              <Link
+                href="/international"
+                onClick={() => setOpen(false)}
+                className="mt-2 inline-flex items-center gap-3 font-display text-3xl sm:text-4xl font-medium text-coral"
+              >
+                <GlobeIcon className="h-7 w-7" /> International Clients
+              </Link>
             </nav>
             <motion.div
               initial={{ opacity: 0 }}

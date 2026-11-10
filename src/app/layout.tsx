@@ -6,6 +6,7 @@ import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { siteUrl } from "@/data/navigation";
 import { EnquiryModal } from "@/components/enquiry/EnquiryModal";
 import { VisitPing } from "@/components/enquiry/VisitPing";
+import { IntlBanner } from "@/components/international/IntlBanner";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -77,6 +78,7 @@ export default function RootLayout({
         <WhatsAppFloat />
         <EnquiryModal />
         <VisitPing />
+        <IntlBanner />
         <Analytics />
       </body>
     </html>

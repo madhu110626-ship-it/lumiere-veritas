@@ -89,6 +89,21 @@ export function Hero() {
             <span className="text-gold">↓</span>
           </Link>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.05, duration: 0.7 }}
+          className="mt-8"
+        >
+          <Link
+            href="/international"
+            className="inline-flex items-center gap-2.5 rounded-full border border-highlight/70 bg-bg-secondary/90 px-5 py-3 text-sm text-text hover:border-coral hover:text-coral transition-colors"
+          >
+            <span aria-hidden>🌐</span>
+            <span>Outside India? <strong className="font-semibold text-coral">Register as an international client →</strong></span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

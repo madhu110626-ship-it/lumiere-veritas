@@ -2,6 +2,7 @@
 import { FormEvent, useState } from "react";
 import { sendOwnerEmail, istNow } from "@/lib/notifyClient";
 import { serviceOptions, contactInfo } from "@/data/navigation";
+import { visitorTz, isIndiaTz } from "@/lib/tz";
 
 const input = "w-full bg-bg border border-text/15 px-4 py-3 text-text text-sm focus:border-gold outline-none transition-colors";
 const lbl = "block text-xs tracking-[0.2em] uppercase text-muted mb-2";
@@ -16,10 +17,13 @@ export function EnquiryForm({ source, compact = false, idPrefix = "f" }: { sourc
     try {
       const d = data as Record<string, string>;
       if (d.website) { setState("done"); return; }
-      const ok = await sendOwnerEmail(`New enquiry — ${d.name}`, {
+      const tz = visitorTz();
+      const abroad = !isIndiaTz(tz);
+      const ok = await sendOwnerEmail(`${abroad ? "[OUTSIDE INDIA] " : ""}New enquiry — ${d.name}`, {
         Name: d.name, Company: d.company || "", Email: d.email, Phone: d.phone || "",
         "Service Required": d.service || "", "Project Details": d.details || "",
         "Submitted from": source, Page: location.pathname, Time: istNow(),
+        "Visitor time zone": tz || "unknown", Location: abroad ? "Outside India (by browser time zone)" : "India",
       }, d.email);
       if (!ok) throw new Error();
       setState("done"); form.reset();

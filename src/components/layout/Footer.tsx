@@ -39,6 +39,11 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/international" className="inline-flex items-center gap-1.5 text-coral hover:text-gold transition-colors text-sm font-medium">
+                  🌐 International Clients – Register
+                </Link>
+              </li>
             </ul>
           </div>
 
