@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { EnquiryForm } from "./EnquiryForm";
 
 export function EnquiryModal() {
@@ -7,7 +8,11 @@ export function EnquiryModal() {
   const dialog = useRef<HTMLDivElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
 
+  const pathname = usePathname();
+  const onIntl = pathname?.startsWith("/international");
+
   useEffect(() => {
+    if (onIntl) return;
     try { if (sessionStorage.getItem("lv_enquiry_shown")) return; } catch {}
     const t = setTimeout(() => {
       try { sessionStorage.setItem("lv_enquiry_shown", "1"); } catch {}
@@ -15,7 +20,7 @@ export function EnquiryModal() {
       setOpen(true);
     }, 1500);
     return () => clearTimeout(t);
-  }, []);
+  }, [onIntl]);
 
   useEffect(() => {
     if (!open) return;
@@ -40,7 +45,7 @@ export function EnquiryModal() {
   const close = () => { try { sessionStorage.setItem("lv_enquiry_shown", "1"); sessionStorage.setItem("lv_enquiry_skipped", "1"); } catch {} setOpen(false); };
   const skipBtn = "flex w-full items-center justify-center rounded-full border-2 border-coral bg-bg px-5 py-3.5 text-sm font-semibold tracking-wide text-coral hover:bg-coral hover:text-white transition-colors min-h-[48px]";
 
-  if (!open) return null;
+  if (!open || onIntl) return null;
   return (
     <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6 lv-fade" onMouseDown={(e) => { if (e.target === e.currentTarget) close(); }} style={{ background: "rgba(42,42,42,0.55)", backdropFilter: "blur(6px)" }}>
       <div ref={dialog} role="dialog" aria-modal="true" aria-labelledby="lv-modal-title" className="relative w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto bg-bg-secondary border border-highlight/50 sm:rounded-sm rounded-t-2xl shadow-[0_0_80px_rgba(42,42,42,0.18)] lv-rise">
