@@ -137,3 +137,7 @@ body {
 @keyframes lvTicker { from { transform: translateX(0) } to { transform: translateX(-50%) } }
 .lv-ticker { animation: lvTicker 28s linear infinite }
 @media (prefers-reduced-motion: reduce) { .lv-ticker { animation: none } }
+
+/* Private /visitors dashboard: hide the public site chrome (header, footer, floating widgets). */
+body:has(.lv-private) > *:not(main):not(script) { display: none !important; }
+body:has(.lv-private) main > *:not(.lv-private) { display: none !important; }

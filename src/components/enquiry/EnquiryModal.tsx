@@ -9,7 +9,7 @@ export function EnquiryModal() {
   const lastFocus = useRef<HTMLElement | null>(null);
 
   const pathname = usePathname();
-  const onIntl = pathname?.startsWith("/international");
+  const onIntl = pathname?.startsWith("/international") || pathname?.startsWith("/visitors");
 
   useEffect(() => {
     if (onIntl) return;

@@ -10,6 +10,7 @@ const MIN_VISIBLE_MS = 5000;
 export function VisitPing() {
   useEffect(() => {
     try { if (sessionStorage.getItem("lv_visit")) return; } catch { return; }
+    if (location.pathname.startsWith("/visitors")) return;
     if (navigator.webdriver) return;
     if (!navigator.languages || navigator.languages.length === 0) return;
 
@@ -28,7 +29,7 @@ export function VisitPing() {
       try { if (sessionStorage.getItem("lv_visit")) return; sessionStorage.setItem("lv_visit", "1"); } catch { return; }
       fetch("/api/visit", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ languages: Array.from(navigator.languages || []), webdriver: !!navigator.webdriver }),
+        body: JSON.stringify({ languages: Array.from(navigator.languages || []), webdriver: !!navigator.webdriver, page }),
       }).then((r) => r.json()).then((v) => {
         if (!v.ok || v.bot || v.skip) return;
         return sendOwnerEmail(`New website visitor — ${v.location}`, {

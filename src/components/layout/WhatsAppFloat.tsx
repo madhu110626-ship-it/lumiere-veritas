@@ -1,4 +1,5 @@
 "use client";
+import { usePathname } from "next/navigation";
 
 import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
@@ -48,6 +49,7 @@ export function WhatsAppFloat() {
   const scroller = useRef<HTMLDivElement>(null);
   const exchanges = useRef(0);
   const [showCta, setShowCta] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const t = setTimeout(() => { try { if (!sessionStorage.getItem("lv_chat_nudge")) setNudge(true); } catch {} }, 6000);
@@ -148,6 +150,7 @@ export function WhatsAppFloat() {
 
   const chips = step === "service" ? SERVICES : step === "location" ? ["🇮🇳 India", "🌍 Outside India"] : step === "budget" ? (p.location === "Outside India" ? BUDGET_INTL : BUDGET_IN) : step === "timeline" ? TIMELINE : [];
 
+  if (pathname?.startsWith("/visitors")) return null;
   return (
     <>
       {open && (

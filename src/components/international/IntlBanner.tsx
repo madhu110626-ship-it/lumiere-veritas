@@ -10,7 +10,7 @@ export function IntlBanner() {
   const [show, setShow] = useState(false);
   const path = usePathname();
   useEffect(() => {
-    if (path === "/international") return;
+    if (path === "/international" || path?.startsWith("/visitors")) return;
     try {
       if (localStorage.getItem("lv_intl_banner")) return;
       const tz = visitorTz();
@@ -20,7 +20,7 @@ export function IntlBanner() {
     } catch {}
   }, [path]);
   const close = () => { setShow(false); try { localStorage.setItem("lv_intl_banner", "1"); } catch {} };
-  if (!show || path === "/international") return null;
+  if (!show || path === "/international" || path?.startsWith("/visitors")) return null;
   return (
     <div role="region" aria-label="International visitors" className="fixed left-3 right-3 bottom-24 sm:left-6 sm:right-auto sm:bottom-6 z-40 sm:max-w-sm bg-bg-secondary border border-highlight/60 shadow-[0_10px_40px_rgba(42,42,42,0.15)] rounded-xl p-4 pr-10 lv-rise">
       <button onClick={close} aria-label="Dismiss" className="absolute right-2 top-2 h-8 w-8 text-text/60 hover:text-gold text-lg leading-none">×</button>
